@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="Joomla! - Open Source Content Management" -->
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-gb">
+	<title type="text">Blog Sidebar</title>
+	<subtitle type="text"></subtitle>
+	<link rel="alternate" type="text/html" href="https://logimax.windstripedesign.ro"/>
+	<id>https://logimax.windstripedesign.ro/blog-sidebar</id>
+	<updated>2025-01-30T16:05:49+00:00</updated>
+	<author>
+		<name>Logimax</name>
+	</author>
+	<generator uri="https://www.joomla.org">Joomla! - Open Source Content Management</generator>
+	<link rel="self" type="application/atom+xml" href="https://logimax.windstripedesign.ro/blog-sidebar?format=feed&amp;type=atom"/>
+	<entry>
+		<title>Helping Companies in Their Green Transition</title>
+		<link rel="alternate" type="text/html" href="https://logimax.windstripedesign.ro/blog/blog-sidebar/helping-companies-in-their-green-transition"/>
+		<published>2024-07-26T12:36:46+00:00</published>
+		<updated>2024-07-26T12:36:46+00:00</updated>
+		<id>https://logimax.windstripedesign.ro/blog/blog-sidebar/helping-companies-in-their-green-transition</id>
+		<author>
+			<name>Windstripe</name>
+		</author>
+		<summary type="html">&lt;p&gt;&lt;img src=&quot;https://logimax.windstripedesign.ro//images/news/post-1.jpg&quot; alt=&quot;&quot; width=&quot;740&quot; height=&quot;450&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;&lt;p&gt;With worldwide annual spend on digital advertising surpassing $325 billion, it’s no surprise that different approaches to online marketing are becoming available. &lt;/p&gt;</summary>
+		<content type="html">&lt;p&gt;&lt;img src=&quot;https://logimax.windstripedesign.ro//images/news/post-1.jpg&quot; alt=&quot;&quot; width=&quot;740&quot; height=&quot;450&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;&lt;p&gt;With worldwide annual spend on digital advertising surpassing $325 billion, it’s no surprise that different approaches to online marketing are becoming available. &lt;/p&gt;</content>
+		<category term="Cargo Insurance" />
+	</entry>
+	<entry>
+		<title>Tips to Lowering Freight Shipping Costs </title>
+		<link rel="alternate" type="text/html" href="https://logimax.windstripedesign.ro/blog/blog-sidebar/tips-to-lowering-freight-shipping-costs"/>
+		<published>2024-07-26T12:36:46+00:00</published>
+		<updated>2024-07-26T12:36:46+00:00</updated>
+		<id>https://logimax.windstripedesign.ro/blog/blog-sidebar/tips-to-lowering-freight-shipping-costs</id>
+		<author>
+			<name>Windstripe</name>
+		</author>
+		<summary type="html">&lt;p&gt;&lt;img src=&quot;https://logimax.windstripedesign.ro//images/news/post-2.jpg&quot; alt=&quot;&quot; width=&quot;740&quot; height=&quot;450&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;&lt;p&gt;With worldwide annual spend on digital advertising surpassing $325 billion, it’s no surprise that different approaches to online marketing are becoming available. &lt;/p&gt;
+</summary>
+		<content type="html">&lt;p&gt;&lt;img src=&quot;https://logimax.windstripedesign.ro//images/news/post-2.jpg&quot; alt=&quot;&quot; width=&quot;740&quot; height=&quot;450&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;&lt;p&gt;With worldwide annual spend on digital advertising surpassing $325 billion, it’s no surprise that different approaches to online marketing are becoming available. &lt;/p&gt;
+</content>
+		<category term="Cargo Insurance" />
+	</entry>
+	<entry>
+		<title>Mechanical Engineering and Energy </title>
+		<link rel="alternate" type="text/html" href="https://logimax.windstripedesign.ro/blog/blog-sidebar/mechanical-engineering-and-energy"/>
+		<published>2024-07-26T12:36:46+00:00</published>
+		<updated>2024-07-26T12:36:46+00:00</updated>
+		<id>https://logimax.windstripedesign.ro/blog/blog-sidebar/mechanical-engineering-and-energy</id>
+		<author>
+			<name>Windstripe</name>
+		</author>
+		<summary type="html">&lt;p&gt;&lt;img src=&quot;https://logimax.windstripedesign.ro//images/news/post-3.jpg&quot; alt=&quot;&quot; width=&quot;740&quot; height=&quot;450&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;&lt;p&gt;With worldwide annual spend on digital advertising surpassing $325 billion, it’s no surprise that different approaches to online marketing are becoming available. &lt;/p&gt;
+</summary>
+		<content type="html">&lt;p&gt;&lt;img src=&quot;https://logimax.windstripedesign.ro//images/news/post-3.jpg&quot; alt=&quot;&quot; width=&quot;740&quot; height=&quot;450&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;&lt;p&gt;With worldwide annual spend on digital advertising surpassing $325 billion, it’s no surprise that different approaches to online marketing are becoming available. &lt;/p&gt;
+</content>
+		<category term="Cargo Insurance" />
+	</entry>
+</feed>
