@@ -97,7 +97,7 @@ const payload = {
             title: "Success",
             text: "Tracking code generated",
         });
-        window.location = "./pages/pricing.html"
+        window.location = "./pages/details.html"
         
 
     } catch (error) {
