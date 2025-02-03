@@ -8938,13 +8938,13 @@
 								<ul class="sp-megamenu-parent menu-animation-fade-up d-none d-lg-block">
 									<li class="sp-menu-item  current-item active"><a aria-current="page"
 											href="index.html">Home</a>
-									
+
 									</li>
 									<li class="sp-menu-item"><a href="about.html">About</a></li>
 									<li class="sp-menu-item "><a href="./services/services-page.html">Services</a>
-									
+
 									</li>
-								
+
 									<li class="sp-menu-item"><a href="contact.html">Contact</a></li>
 									<li class="sp-menu-item"></li>
 									<li class="sp-menu-item"></li>
@@ -9038,13 +9038,9 @@
 																				<div id="sppb-addon-917cd147-29fb-4d4c-81db-96b1c466cd96"
 																					class="clearfix  ">
 																					<div class="sppb-icon search-icon">
-																						<a href="search-page.html"><span
-																								class="sppb-icon-inner"><i
-																									class="fas fa-search"
-																									aria-hidden="true"
-																									title=""></i><span
-																									class="sppb-form-label-visually-hidden">fas
-																									fa-search</span></span></a>
+																						<button onclick="openModal()">
+																							Track Package
+																						</button>
 																					</div>
 																					<style type="text/css">
 																						#sppb-addon-917cd147-29fb-4d4c-81db-96b1c466cd96 {
@@ -9574,6 +9570,128 @@
 
 			</section>
 
+
+
+			<!-- Modal Structure -->
+			<div class="modal-overlay" id="modalOverlay" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+				<div class="modal-content">
+					<!-- Close Button -->
+					<button class="close-btn" aria-label="Close modal" onclick="closeModal()">
+						&times;
+					</button>
+
+					<!-- Modal Body -->
+					<div class="modal-body">
+						<div class="input-group">
+							<input type="text" id="trackInput" placeholder="Enter Track ID" aria-label="Enter Track ID">
+							<button class="track-btn" onclick="trackItem()">
+								Track ID
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<style>
+				/* Base Styles */
+				.modal-overlay {
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: rgba(0, 0, 0, 0.5);
+					display: none;
+					justify-content: center;
+					align-items: center;
+					z-index: 1000;
+				}
+
+				.modal-content {
+					position: relative;
+					background: white;
+					padding: 2rem;
+					border-radius: 4px;
+					box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+					min-width: 300px;
+					max-width: 60%;
+				}
+
+				.close-btn {
+					position: absolute;
+					top: 1rem;
+					right: 1rem;
+					background: none;
+					border: none;
+					font-size: 1.5rem;
+					cursor: pointer;
+					color: #666;
+					padding: 0.25rem;
+					transition: color 0.2s ease;
+				}
+
+				.close-btn:hover {
+					color: #333;
+				}
+
+				.input-group {
+					display: flex;
+					gap: 1rem;
+					margin-top: 1rem;
+				}
+
+				#trackInput {
+					flex: 1;
+					padding: 0.5rem;
+					border: 1px solid #ddd;
+					border-radius: 4px;
+					font-size: 1rem;
+				}
+
+				.track-btn {
+					background-color: #176BD8;
+					color: white;
+					border: none;
+					padding: 0.5rem 1rem;
+					border-radius: 4px;
+					cursor: pointer;
+					font-size: 0.9rem;
+					transition: background-color 0.2s ease;
+				}
+
+				.track-btn:hover {
+					background-color: #135db3;
+				}
+			</style>
+
+			<script>
+				// Modal control functions
+				function openModal() {
+					document.getElementById('modalOverlay').style.display = 'flex';
+					document.getElementById('trackInput').focus();
+				}
+
+				function closeModal() {
+					document.getElementById('modalOverlay').style.display = 'none';
+				}
+
+				function trackItem() {
+					// Add your tracking logic here
+					const input = document.getElementById('trackInput').value;
+					localStorage.setItem('trackingId', input);
+					trackPackage();
+					console.log('Tracking:', input);
+				}
+
+				// Close modal on ESC key press
+				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape') {
+						closeModal();
+					}
+				});
+			</script>
+
+
 			<section id="sp-main-body">
 
 
@@ -9636,17 +9754,17 @@
 																								class="sppb-sp-slider-title"
 																								data-layer="true"
 																								data-animation='{"type":"slide","direction":"top","from":"100%", "to":"0%","duration":"1800","after":"1000", "timing_function":"ease"}'>
-																								We Carrying the World
-																								<br> to Your Doorstep
-																							</h1><a
+																								We Carrying the
+																								World
+																								<br> to Your
+																								Doorstep
+																							</h1><button
 																								id="sp-slider-inner-item-e6b51e3e-ed2d-43a9-a646-1dbaa15af65b-num-2-key"
 																								class="sppb-sp-slider-button"
-																								href="services/services-page.html"
+																								onclick="openModal()"
 																								data-layer="true"
 																								data-animation='{"type":"slide","direction":"top","from":"100%", "to":"0%","duration":"1800","after":"1300", "timing_function":"ease"}'><span
-																									class="sp-slider-btn-text">VIEW
-																									OUR
-																									Services</span></a>
+																									class="sp-slider-btn-text">Track Package</span></button>
 																							<div id="sp-slider-inner-item-e6b51e3e-ed2d-43a9-a646-1dbaa15af65b-num-3-key"
 																								class="sppb-sp-slider-text video-button"
 																								data-layer="true"
@@ -9660,7 +9778,8 @@
 																											aria-hidden="true"></i></span></a>
 																								<span
 																									class="ms-3 d-line">Watch
-																									our videos</span>
+																									our
+																									videos</span>
 																							</div>
 																						</div>
 																					</div>
@@ -9688,17 +9807,17 @@
 																								class="sppb-sp-slider-title"
 																								data-layer="true"
 																								data-animation='{"type":"slide","direction":"top","from":"100%", "to":"0%","duration":"1800","after":"1000", "timing_function":"ease"}'>
-																								best Logistics in the
+																								best Logistics in
+																								the
 																								<br> World Business
 																							</h1>
-																							<a id="sp-slider-inner-item-e6b51e3e-ed2d-43a9-a646-1dbaa15af65b-num-2-key"
+																							<button
+																								id="sp-slider-inner-item-e6b51e3e-ed2d-43a9-a646-1dbaa15af65b-num-2-key"
 																								class="sppb-sp-slider-button"
-																								href="services/services-page.html"
+																								onclick="openModal()"
 																								data-layer="true"
 																								data-animation='{"type":"slide","direction":"top","from":"100%", "to":"0%","duration":"1800","after":"1300", "timing_function":"ease"}'><span
-																									class="sp-slider-btn-text">VIEW
-																									OUR
-																									Services</span></a>
+																									class="sp-slider-btn-text">Track Package</span></button>
 																							<div id="sp-slider-inner-item-e6b51e3e-ed2d-43a9-a646-1dbaa15af65b-num-3-key"
 																								class="sppb-sp-slider-text video-button"
 																								data-layer="true"
@@ -9712,7 +9831,8 @@
 																											aria-hidden="true"></i></span></a>
 																								<span
 																									class="ms-3 d-line">Watch
-																									our videos</span>
+																									our
+																									videos</span>
 																							</div>
 																						</div>
 																					</div>
@@ -9740,17 +9860,17 @@
 																								class="sppb-sp-slider-title"
 																								data-layer="true"
 																								data-animation='{"type":"slide","direction":"top","from":"100%", "to":"0%","duration":"1800","after":"1000", "timing_function":"ease"}'>
-																								Quick Transport delivery
-																								<br> get your Products
-																							</h1><a
+																								Quick Transport
+																								delivery
+																								<br> get your
+																								Products
+																							</h1><button
 																								id="sp-slider-inner-item-e6b51e3e-ed2d-43a9-a646-1dbaa15af65b-num-2-key"
 																								class="sppb-sp-slider-button"
-																								href="services/services-page.html"
+																								onclick="openModal()"
 																								data-layer="true"
 																								data-animation='{"type":"slide","direction":"top","from":"100%", "to":"0%","duration":"1800","after":"1300", "timing_function":"ease"}'><span
-																									class="sp-slider-btn-text">VIEW
-																									OUR
-																									Services</span></a>
+																									class="sp-slider-btn-text">Track Package</span></button>
 																							<div id="sp-slider-inner-item-e6b51e3e-ed2d-43a9-a646-1dbaa15af65b-num-3-key"
 																								class="sppb-sp-slider-text video-button"
 																								data-layer="true"
@@ -9764,7 +9884,8 @@
 																											aria-hidden="true"></i></span></a>
 																								<span
 																									class="ms-3 d-line">Watch
-																									our videos</span>
+																									our
+																									videos</span>
 																							</div>
 																						</div>
 																					</div>
@@ -9784,36 +9905,54 @@
 																	<div class="sppb-addon ">
 																		<div id="sppb-modal-ee2c885d-a401-43e2-877d-5f188323c8a9"
 																			class="mfp-hide white-popup-block">
-																			<div class="modal-inner-block">Kevin chicken
-																				fatback sirloin ball tip, flank meatloaf
-																				t-bone. Meatloaf shankle swine pancetta
+																			<div class="modal-inner-block">Kevin
+																				chicken
+																				fatback sirloin ball tip, flank
+																				meatloaf
+																				t-bone. Meatloaf shankle swine
+																				pancetta
 																				biltong capicola ham hock meatball.
-																				Shoulder bacon andouille ground round
+																				Shoulder bacon andouille ground
+																				round
 																				pancetta pastrami. Sirloin beef ribs
-																				tenderloin rump corned beef filet mignon
+																				tenderloin rump corned beef filet
+																				mignon
 																				capicola kielbasa drumstick chuck
-																				turducken beef t-bone ribeye. Pork loin
+																				turducken beef t-bone ribeye. Pork
+																				loin
 																				ground round t-bone chuck beef ribs
-																				swine pastrami cow. Venison tenderloin
+																				swine pastrami cow. Venison
+																				tenderloin
 																				drumstick, filet mignon salami jowl
-																				sausage shank hamburger meatball ribeye
-																				kevin tri-tip. Swine kielbasa tenderloin
-																				fatback pork shankle andouille, flank
-																				frankfurter jerky chicken tri-tip jowl
+																				sausage shank hamburger meatball
+																				ribeye
+																				kevin tri-tip. Swine kielbasa
+																				tenderloin
+																				fatback pork shankle andouille,
+																				flank
+																				frankfurter jerky chicken tri-tip
+																				jowl
 																				leberkas.&lt;br&gt;&lt;br&gt;Pancetta
 																				chicken pork belly beef cow kielbasa
-																				fatback sirloin biltong andouille bacon.
-																				Sirloin beef tenderloin porchetta, jerky
+																				fatback sirloin biltong andouille
+																				bacon.
+																				Sirloin beef tenderloin porchetta,
+																				jerky
 																				tri-tip andouille sausage landjaeger
 																				shank bresaola short ribs tongue
 																				meatloaf fatback. Kielbasa pancetta
-																				shoulder tri-tip pastrami filet mignon
-																				ham corned beef prosciutto doner beef
-																				ribs. Doner sausage ham hock, shoulder
+																				shoulder tri-tip pastrami filet
+																				mignon
+																				ham corned beef prosciutto doner
+																				beef
+																				ribs. Doner sausage ham hock,
+																				shoulder
 																				sirloin pancetta boudin filet mignon
 																				chuck. Meatball ham hock beef, filet
-																				mignon tri-tip andouille venison ground
-																				round chuck turducken drumstick.</div>
+																				mignon tri-tip andouille venison
+																				ground
+																				round chuck turducken drumstick.
+																			</div>
 																		</div><a
 																			class="sppb-btn  sppb-btn-custom sppb-btn-rounded sppb-magnific-popup sppb-modal-selector"
 																			data-popup_type="inline"
@@ -9925,7 +10064,8 @@
 																						<a href="tel:+19993452577">
 																							<div
 																								class="sppb-addon-title">
-																								+1 (999) 345 2577</div>
+																								+1 (999) 345 2577
+																							</div>
 																						</a>
 																					</div>
 																				</div>
@@ -10005,8 +10145,8 @@
 																				class="sppb-addon-wrapper  addon-root-modal">
 																				<div id="sppb-addon-e183981f-4a2d-43be-af8b-6336d561ed3e"
 																					class="clearfix   sppb-positioned-addon ">
-																					<div class="sppb-addon video-btn"><a
-																							class="sppb-modal-selector sppb-magnific-popup"
+																					<div class="sppb-addon video-btn">
+																						<a class="sppb-modal-selector sppb-magnific-popup"
 																							href="https://www.youtube.com/watch?v=ljxp9BLVgFM"
 																							data-popup_type="iframe"
 																							data-mainclass="mfp-no-margins mfp-with-zoom"
@@ -10048,7 +10188,8 @@
 																			class="clearfix  sppb-wow fadeInUp  "
 																			data-sppb-wow-duration="1000ms">
 																			<div class="sppb-addon sppb-addon-header">
-																				<div class="sppb-addon-title">About Us
+																				<div class="sppb-addon-title">About
+																					Us
 																				</div>
 																			</div>
 																		</div>
@@ -10061,13 +10202,16 @@
 																			data-sppb-wow-delay="300ms">
 																			<div
 																				class="sppb-addon sppb-addon-text-block ">
-																				<h2 class="sppb-addon-title">TransMax
+																				<h2 class="sppb-addon-title">
+																					TransMax
 																					Logistics Around the World</h2>
 																				<div class="sppb-addon-content">
-																					<p>Nullam eu nibh vitae est tempor
+																					<p>Nullam eu nibh vitae est
+																						tempor
 																						molestie id sed ex. Quisque
 																						dignissim maximus ipsum, sed
-																						rutrum metus tincidunt et. Sed
+																						rutrum metus tincidunt et.
+																						Sed
 																						eget tincidunt ipsum.Eget
 																						tincidunt</p>
 																				</div>
@@ -10097,7 +10241,8 @@
 																						<li>
 																							<i
 																								class="fas fa-check-circle"></i>
-																							Custom design &amp; feauture
+																							Custom design &amp;
+																							feauture
 																						</li>
 																					</ul>
 																				</div>
@@ -10163,11 +10308,12 @@
 																				class="sppb-addon-wrapper  addon-root-button">
 																				<div id="sppb-addon-925b0b0c-59c4-46b1-bfcc-f1fe17efdebd"
 																					class="clearfix  ">
-																					<div class="sppb-button-wrapper"><a
-																							href="about.html"
+																					<div class="sppb-button-wrapper">
+																						<a href="about.html"
 																							id="btn-925b0b0c-59c4-46b1-bfcc-f1fe17efdebd"
 																							class="sppb-btn  sppb-btn-primary sppb-btn-rounded">Discover
-																							More</a></div>
+																							More</a>
+																					</div>
 																				</div>
 																			</div>
 																		</div>
@@ -10258,12 +10404,13 @@
 																		class="sppb-addon-wrapper  addon-root-heading">
 																		<div id="sppb-addon-410dc126-3c14-44b6-b50c-9550e45920ca"
 																			class="clearfix  ">
-																			<div class="sppb-addon sppb-addon-header"><a
-																					href="services/service-details.html">
+																			<div class="sppb-addon sppb-addon-header">
+																				<a href="services/service-details.html">
 																					<h5 class="sppb-addon-title">
 																						Ocean<br />
 																						Freight</h5>
-																				</a></div>
+																				</a>
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -10307,12 +10454,13 @@
 																		class="sppb-addon-wrapper  addon-root-heading">
 																		<div id="sppb-addon-f6b66a27-ac29-4a16-992e-7b05689a8984"
 																			class="clearfix  ">
-																			<div class="sppb-addon sppb-addon-header"><a
-																					href="services/service-details.html">
+																			<div class="sppb-addon sppb-addon-header">
+																				<a href="services/service-details.html">
 																					<h5 class="sppb-addon-title">
 																						Air<br />
 																						Freight </h5>
-																				</a></div>
+																				</a>
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -10356,12 +10504,13 @@
 																		class="sppb-addon-wrapper  addon-root-heading">
 																		<div id="sppb-addon-519f421c-3427-4e32-bc81-1ba202046a69"
 																			class="clearfix  ">
-																			<div class="sppb-addon sppb-addon-header"><a
-																					href="services/service-details.html">
+																			<div class="sppb-addon sppb-addon-header">
+																				<a href="services/service-details.html">
 																					<h5 class="sppb-addon-title">
 																						Railway<br />
 																						Freight </h5>
-																				</a></div>
+																				</a>
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -10422,7 +10571,8 @@
 																	class="clearfix  sppb-wow fadeInUp  "
 																	data-sppb-wow-duration="1000ms">
 																	<div class="sppb-addon sppb-addon-header">
-																		<div class="sppb-addon-title">Our Projects</div>
+																		<div class="sppb-addon-title">Our Projects
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -10433,7 +10583,8 @@
 																	data-sppb-wow-duration="1000ms"
 																	data-sppb-wow-delay="300ms">
 																	<div class="sppb-addon sppb-addon-text-block ">
-																		<h2 class="sppb-addon-title">Explore Our Recent
+																		<h2 class="sppb-addon-title">Explore Our
+																			Recent
 																			Work</h2>
 																		<div class="sppb-addon-content">
 																			<p></p>
@@ -10512,7 +10663,8 @@
 																									<h4
 																										class="sppb-addon-title">
 																										Quality
-																										Equipment</h4>
+																										Equipment
+																									</h4>
 																								</a>
 																							</div>
 																						</div>
@@ -10610,7 +10762,8 @@
 																									<h4
 																										class="sppb-addon-title">
 																										Quality
-																										Equipment</h4>
+																										Equipment
+																									</h4>
 																								</a>
 																							</div>
 																						</div>
@@ -10708,7 +10861,8 @@
 																									<h4
 																										class="sppb-addon-title">
 																										Quality
-																										Equipment</h4>
+																										Equipment
+																									</h4>
 																								</a>
 																							</div>
 																						</div>
@@ -10806,7 +10960,8 @@
 																									<h4
 																										class="sppb-addon-title">
 																										Quality
-																										Equipment</h4>
+																										Equipment
+																									</h4>
 																								</a>
 																							</div>
 																						</div>
@@ -10864,7 +11019,8 @@
 																	data-sppb-wow-duration="1000ms"
 																	data-sppb-wow-delay="300ms">
 																	<div class="sppb-addon sppb-addon-text-block ">
-																		<h2 class="sppb-addon-title">Meet Our Amazing
+																		<h2 class="sppb-addon-title">Meet Our
+																			Amazing
 																			Team</h2>
 																		<div class="sppb-addon-content">
 																			<p></p>
@@ -11197,10 +11353,12 @@
 																	<div
 																		class="sppb-addon sppb-addon-text-block text-area">
 																		<div class="sppb-addon-content">
-																			<p>Contact our expert team member to take
+																			<p>Contact our expert team member to
+																				take
 																				our <a
 																					href="services/service-details.html"><strong><u>BEST
-																							SERVICE</u></strong></a></p>
+																							SERVICE</u></strong></a>
+																			</p>
 																		</div>
 																	</div>
 																</div>
@@ -11304,7 +11462,8 @@
 																							<div class="sppb-animated-number"
 																								data-format="0"
 																								data-digit="38"
-																								data-duration="5000">0
+																								data-duration="5000">
+																								0
 																							</div>
 																							<div
 																								class="sppb-animated-number-title">
@@ -11325,7 +11484,8 @@
 																							<div class="sppb-animated-number"
 																								data-format="0"
 																								data-digit="256"
-																								data-duration="5000">0
+																								data-duration="5000">
+																								0
 																							</div>
 																							<div
 																								class="sppb-animated-number-title">
@@ -11361,7 +11521,8 @@
 																	class="clearfix  sppb-wow fadeInUp  "
 																	data-sppb-wow-duration="1000ms">
 																	<div class="sppb-addon sppb-addon-header">
-																		<div class="sppb-addon-title">What People Ask
+																		<div class="sppb-addon-title">What People
+																			Ask
 																		</div>
 																	</div>
 																</div>
@@ -11373,7 +11534,8 @@
 																	data-sppb-wow-duration="1000ms"
 																	data-sppb-wow-delay="300ms">
 																	<div class="sppb-addon sppb-addon-text-block ">
-																		<h2 class="sppb-addon-title">Get Every Single
+																		<h2 class="sppb-addon-title">Get Every
+																			Single
 																			Answer<br> From Here</h2>
 																		<div class="sppb-addon-content">
 																			<p></p>
@@ -11404,7 +11566,8 @@
 																						</span><span
 																							class="sppb-panel-title"
 																							aria-label="How can I pay for your logistics services?">How
-																							can I pay for your logistics
+																							can I pay for your
+																							logistics
 																							services?</span></button>
 																					<div id="sppb-ac-content-b7cc8b46-bcaf-4666-955e-bd789fc0cec8-key-0"
 																						class="sppb-panel-collapse"
@@ -11486,7 +11649,8 @@
 																						</span><span
 																							class="sppb-panel-title"
 																							aria-label="What options for logistics plans are available?">What
-																							options for logistics plans
+																							options for logistics
+																							plans
 																							are
 																							available?</span></button>
 																					<div id="sppb-ac-content-b7cc8b46-bcaf-4666-955e-bd789fc0cec8-key-1"
@@ -11653,7 +11817,8 @@
 																						</span><span
 																							class="sppb-panel-title"
 																							aria-label="Can i specify a delivery date when ordering?">Can
-																							i specify a delivery date
+																							i specify a delivery
+																							date
 																							when
 																							ordering?</span></button>
 																					<div id="sppb-ac-content-b7cc8b46-bcaf-4666-955e-bd789fc0cec8-key-3"
@@ -11756,7 +11921,8 @@
 																	class="clearfix  sppb-wow fadeInUp  "
 																	data-sppb-wow-duration="1000ms">
 																	<div class="sppb-addon sppb-addon-header">
-																		<div class="sppb-addon-title">Our Recent Work
+																		<div class="sppb-addon-title">Our Recent
+																			Work
 																		</div>
 																	</div>
 																</div>
@@ -11768,14 +11934,18 @@
 																	data-sppb-wow-duration="1000ms"
 																	data-sppb-wow-delay="300ms">
 																	<div class="sppb-addon sppb-addon-text-block ">
-																		<h2 class="sppb-addon-title">Sales Growth</h2>
+																		<h2 class="sppb-addon-title">Sales Growth
+																		</h2>
 																		<div class="sppb-addon-content">
-																			<p>Our clients describe us as a product team
+																			<p>Our clients describe us as a product
+																				team
 																				which creates amazing <span
 																					style="color:#2a2833;"><strong
 																						class="head-color">UI/UX</strong></span>
-																				experiences, by crafting top-notch user
-																				experience of funny the century rather.,
+																				experiences, by crafting top-notch
+																				user
+																				experience of funny the century
+																				rather.,
 																			</p>
 																		</div>
 																	</div>
@@ -11816,7 +11986,8 @@
 																		<div id="sppb-addon-ffd01307-1b94-4c18-afca-1b69d828fbd9"
 																			class="clearfix  ">
 																			<div class="sppb-addon sppb-addon-header">
-																				<h5 class="sppb-addon-title">Increased
+																				<h5 class="sppb-addon-title">
+																					Increased
 																					By<br />
 																					The Last 2 Years</h5>
 																			</div>
@@ -11915,7 +12086,8 @@
 																	class="clearfix  sppb-wow fadeInUp  "
 																	data-sppb-wow-duration="1000ms">
 																	<div class="sppb-addon sppb-addon-header">
-																		<div class="sppb-addon-title">Success Stories
+																		<div class="sppb-addon-title">Success
+																			Stories
 																		</div>
 																	</div>
 																</div>
@@ -11927,7 +12099,8 @@
 																	data-sppb-wow-duration="1000ms"
 																	data-sppb-wow-delay="300ms">
 																	<div class="sppb-addon sppb-addon-text-block ">
-																		<h2 class="sppb-addon-title">Why customers love
+																		<h2 class="sppb-addon-title">Why customers
+																			love
 																			to <br> working with us</h2>
 																		<div class="sppb-addon-content">
 																			<p></p>
@@ -11995,10 +12168,14 @@
 																				class="sppb-addon sppb-addon-text-block ">
 																				<div class="sppb-addon-content">
 																					<p>Bring to the table win-win
-																						strategies to ensure proactive
-																						domination. At the end of the
-																						day going forward normal that
-																						has evolved from operational X
+																						strategies to ensure
+																						proactive
+																						domination. At the end of
+																						the
+																						day going forward normal
+																						that
+																						has evolved from operational
+																						X
 																						is on the</p>
 																				</div>
 																			</div>
@@ -12080,10 +12257,14 @@
 																				class="sppb-addon sppb-addon-text-block ">
 																				<div class="sppb-addon-content">
 																					<p>Bring to the table win-win
-																						strategies to ensure proactive
-																						domination. At the end of the
-																						day going forward normal that
-																						has evolved from operational X
+																						strategies to ensure
+																						proactive
+																						domination. At the end of
+																						the
+																						day going forward normal
+																						that
+																						has evolved from operational
+																						X
 																						is on the</p>
 																				</div>
 																			</div>
@@ -12095,7 +12276,8 @@
 																			class="clearfix  ">
 																			<div
 																				class="sppb-addon sppb-addon-text-block ">
-																				<h4 class="sppb-addon-title">Jack Daniel
+																				<h4 class="sppb-addon-title">Jack
+																					Daniel
 																				</h4>
 																				<div class="sppb-addon-content">
 																					<p>Designer</p>
@@ -12165,10 +12347,14 @@
 																				class="sppb-addon sppb-addon-text-block ">
 																				<div class="sppb-addon-content">
 																					<p>Bring to the table win-win
-																						strategies to ensure proactive
-																						domination. At the end of the
-																						day going forward normal that
-																						has evolved from operational X
+																						strategies to ensure
+																						proactive
+																						domination. At the end of
+																						the
+																						day going forward normal
+																						that
+																						has evolved from operational
+																						X
 																						is on the</p>
 																				</div>
 																			</div>
@@ -12180,7 +12366,8 @@
 																			class="clearfix  ">
 																			<div
 																				class="sppb-addon sppb-addon-text-block ">
-																				<h4 class="sppb-addon-title">Ava Olivia
+																				<h4 class="sppb-addon-title">Ava
+																					Olivia
 																				</h4>
 																				<div class="sppb-addon-content">
 																					<p>Designer</p>
@@ -12218,26 +12405,31 @@
 																		data-item-number-xl="5" data-item-number-lg="4"
 																		data-item-number-md="3" data-item-number-sm="2"
 																		data-item-number-xs="1">
-																		<div class="sppb-carousel-extended-item"><img
-																				class="sppb-img-responsive sppb-addon-clients-image"
+																		<div class="sppb-carousel-extended-item">
+																			<img class="sppb-img-responsive sppb-addon-clients-image"
 																				src="images/brand/01.png" alt=""
-																				loading="lazy"></div>
-																		<div class="sppb-carousel-extended-item"><img
-																				class="sppb-img-responsive sppb-addon-clients-image"
+																				loading="lazy">
+																		</div>
+																		<div class="sppb-carousel-extended-item">
+																			<img class="sppb-img-responsive sppb-addon-clients-image"
 																				src="images/brand/02.png" alt=""
-																				loading="lazy"></div>
-																		<div class="sppb-carousel-extended-item"><img
-																				class="sppb-img-responsive sppb-addon-clients-image"
+																				loading="lazy">
+																		</div>
+																		<div class="sppb-carousel-extended-item">
+																			<img class="sppb-img-responsive sppb-addon-clients-image"
 																				src="images/brand/03.png" alt=""
-																				loading="lazy"></div>
-																		<div class="sppb-carousel-extended-item"><img
-																				class="sppb-img-responsive sppb-addon-clients-image"
+																				loading="lazy">
+																		</div>
+																		<div class="sppb-carousel-extended-item">
+																			<img class="sppb-img-responsive sppb-addon-clients-image"
 																				src="images/brand/04.png" alt=""
-																				loading="lazy"></div>
-																		<div class="sppb-carousel-extended-item"><img
-																				class="sppb-img-responsive sppb-addon-clients-image"
+																				loading="lazy">
+																		</div>
+																		<div class="sppb-carousel-extended-item">
+																			<img class="sppb-img-responsive sppb-addon-clients-image"
 																				src="images/brand/05.png" alt=""
-																				loading="lazy"></div>
+																				loading="lazy">
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -12262,7 +12454,8 @@
 																	class="clearfix  sppb-wow fadeInUp  "
 																	data-sppb-wow-duration="1000ms">
 																	<div class="sppb-addon sppb-addon-header">
-																		<div class="sppb-addon-title">Request A Quote
+																		<div class="sppb-addon-title">Request A
+																			Quote
 																		</div>
 																	</div>
 																</div>
@@ -12278,8 +12471,10 @@
 																		</h2>
 																		<div class="sppb-addon-content">
 																			<p> We Offers
-																				intellgent concepts for road and tail
-																				and well as complex special transport
+																				intellgent concepts for road and
+																				tail
+																				and well as complex special
+																				transport
 																				services</p>
 																		</div>
 																	</div>
@@ -12396,7 +12591,8 @@
 																										class="sppb-media-content">
 																										<h6
 																											class="sppb-addon-title sppb-feature-box-title">
-																											Support 24/7
+																											Support
+																											24/7
 																										</h6>
 																										<div
 																											class="sppb-addon-text">
@@ -12479,7 +12675,8 @@
 																		<div id="sppb-addon-08807c5b-3f87-4775-a3d7-3eb5d7b0cf18"
 																			class="clearfix  ">
 																			<div class="sppb-addon sppb-addon-header">
-																				<h4 class="sppb-addon-title">Personal &
+																				<h4 class="sppb-addon-title">
+																					Personal &
 																					Shipment Data</h4>
 																			</div>
 																		</div>
@@ -12539,6 +12736,22 @@
 																								placeholder="Receiver email">
 																						</div>
 																						<div
+																							class="sppb-form-group sppb-form-builder-field-3">
+																							<input type="text"
+																								id="receiver-name"
+																								name="form-builder-item-[subject]"
+																								class="sppb-form-control"
+																								placeholder="Receiver name">
+																						</div>
+																						<div
+																							class="sppb-form-group sppb-form-builder-field-3">
+																							<input type="text"
+																								id="receiver-phone"
+																								name="form-builder-item-[subject]"
+																								class="sppb-form-control"
+																								placeholder="Receiver phone">
+																						</div>
+																						<div
 																							class="sppb-form-group sppb-form-builder-field-4">
 																							<input type="text"
 																								id="receiver-location"
@@ -12560,11 +12773,13 @@
 																								class="sppb-form-control"
 																								name="form-builder-item-[freight-type]"
 																								id="delivery-mode">
-																								<option value="">Freight
+																								<option value="">
+																									Freight
 																									Type</option>
 																								<option
 																									value="Air Freight">
-																									Air Freight</option>
+																									Air Freight
+																								</option>
 																								<option
 																									value="Ship Freight">
 																									Ship Freight
@@ -12791,7 +13006,8 @@
 																							Products</a>
 																						<div
 																							class="sppb-articles-carousel-introtext">
-																							With worldwide annual spend
+																							With worldwide annual
+																							spend
 																							on digital advertising
 																							surpassing $325...</div>
 																						<span
@@ -12827,7 +13043,8 @@
 																							Transition</a>
 																						<div
 																							class="sppb-articles-carousel-introtext">
-																							With worldwide annual spend
+																							With worldwide annual
+																							spend
 																							on digital advertising
 																							surpassing $325...</div>
 																						<span
@@ -12859,11 +13076,13 @@
 																							href="blog-sidebar/shipment-solutions/mechanical-engineering-and-energy.html"
 																							class="sppb-articles-carousel-link"
 																							itemprop="url">Tips to
-																							Lowering Freight Shipping
+																							Lowering Freight
+																							Shipping
 																							Costs</a>
 																						<div
 																							class="sppb-articles-carousel-introtext">
-																							With worldwide annual spend
+																							With worldwide annual
+																							spend
 																							on digital advertising
 																							surpassing $325...</div>
 																						<span
@@ -12895,11 +13114,13 @@
 																							href="blog-sidebar/shipment-solutions/tips-to-lowering-freight-shipping-costs.html"
 																							class="sppb-articles-carousel-link"
 																							itemprop="url">Tips to
-																							Lowering Freight Shipping
+																							Lowering Freight
+																							Shipping
 																							Costs </a>
 																						<div
 																							class="sppb-articles-carousel-introtext">
-																							With worldwide annual spend
+																							With worldwide annual
+																							spend
 																							on digital advertising
 																							surpassing $325...</div>
 																						<span
@@ -12935,7 +13156,8 @@
 																							Transition</a>
 																						<div
 																							class="sppb-articles-carousel-introtext">
-																							With worldwide annual spend
+																							With worldwide annual
+																							spend
 																							on digital advertising
 																							surpassing $325...</div>
 																						<span
@@ -12956,7 +13178,7 @@
 											</div>
 										</div>
 									</section>
-									
+
 								</div>
 							</div>
 
@@ -13076,8 +13298,10 @@
 																			<div
 																				class="sppb-addon sppb-addon-text-block ">
 																				<div class="sppb-addon-content">
-																					<p>Address 301 Princes Street, Ei-
-																						<br>Mahall Damietta Egypt-104
+																					<p>Address 301 Princes Street,
+																						Ei-
+																						<br>Mahall Damietta
+																						Egypt-104
 																					</p>
 																				</div>
 																			</div>
@@ -13121,11 +13345,12 @@
 																		class="sppb-addon-wrapper  addon-root-heading">
 																		<div id="sppb-addon-24defa73-614f-40b5-aa8d-5b866014e096"
 																			class="clearfix  ">
-																			<div class="sppb-addon sppb-addon-header"><a
-																					href="tel:+19993452577">
+																			<div class="sppb-addon sppb-addon-header">
+																				<a href="tel:+19993452577">
 																					<h6 class="sppb-addon-title">+1
 																						(999) 345 2577</h6>
-																				</a></div>
+																				</a>
+																			</div>
 																			<style type="text/css">
 																				#sppb-addon-24defa73-614f-40b5-aa8d-5b866014e096 {
 																					box-shadow: 0 0 0 0 #FFFFFF;
@@ -13956,7 +14181,8 @@
 																			class="clearfix  ">
 																			<div
 																				class="sppb-addon sppb-addon-text-block ">
-																				<h3 class="sppb-addon-title">Navigation
+																				<h3 class="sppb-addon-title">
+																					Navigation
 																				</h3>
 																				<div class="sppb-addon-content">
 																					<ul class="list-items">
@@ -14130,7 +14356,8 @@
 																			class="clearfix  ">
 																			<div
 																				class="sppb-addon sppb-addon-text-block ">
-																				<h3 class="sppb-addon-title">Services
+																				<h3 class="sppb-addon-title">
+																					Services
 																				</h3>
 																				<div class="sppb-addon-content">
 																					<ul class="list-items">
@@ -14715,8 +14942,10 @@
 																			<div
 																				class="sppb-addon sppb-addon-text-block ">
 																				<div class="sppb-addon-content">
-																					<p>The ultimate Webflow template for
-																						agencies <br>startups, and small
+																					<p>The ultimate Webflow template
+																						for
+																						agencies <br>startups, and
+																						small
 																						businesses.</p>
 																				</div>
 																			</div>
@@ -14864,8 +15093,9 @@
 																					<div
 																						class="sppb-addon sppb-addon-text-block ">
 																						<div class="sppb-addon-content">
-																							<p>Copyright © 2024 Fast Freight
-																								</p>
+																							<p>Copyright © 2024 Fast
+																								Freight
+																							</p>
 																						</div>
 																					</div>
 																					<style type="text/css">
@@ -14945,7 +15175,8 @@
 																					<div
 																						class="sppb-addon sppb-addon-text-block ">
 																						<div class="sppb-addon-content">
-																							<p>All Rights Reserved</p>
+																							<p>All Rights Reserved
+																							</p>
 																						</div>
 																					</div>
 																					<style type="text/css">

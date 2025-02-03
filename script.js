@@ -13,6 +13,8 @@ async function registerPackage() {
     const senderPhone = document.getElementById("sender-phone").value.trim();
     const senderLocation = document.getElementById("sender-location").value.trim();
     const receiverEmail = document.getElementById("receiver-email").value.trim();
+    const receiverName = document.getElementById("receiver-name").value.trim();
+    const receiverPhone = document.getElementById("receiver-phone").value.trim();
     const receiverLocation = document.getElementById("receiver-location").value.trim();
     const deliveryMode = document.getElementById("delivery-mode").value.trim();
     const contentName = document.getElementById("content-name").value.trim();
@@ -26,8 +28,8 @@ async function registerPackage() {
 
 
 
-    if (!senderName || !senderEmail || !senderPhone || !senderLocation || !receiverEmail ||
-        !receiverLocation || !deliveryMode || !contentName || !contentWeight || !contentHeight || !contentLength || !contentWidth ) {
+    if (!senderName || !senderEmail || !senderPhone || !senderLocation || !receiverEmail || !receiverName || !receiverPhone ||
+        !receiverLocation || !deliveryMode || !contentName || !contentWeight || !contentHeight || !contentLength || !contentWidth) {
         return Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -44,7 +46,7 @@ async function registerPackage() {
 
     }
 
-    if (!validatePhone(senderPhone) ) {
+    if (!validatePhone(senderPhone)) {
         alert("Please enter valid phone numbers.");
         return Swal.fire({
             icon: "error",
@@ -54,23 +56,28 @@ async function registerPackage() {
     }
 
     // Construct the payload
-const payload = {
-    trackingId,
-    senderName,
-    senderEmail,
-    senderPhone,
-    senderLocation,
-    receiverEmail,
-    receiverLocation,
-    deliveryMode,
-    contentName,
-    contentWeight,
-};
+    const payload = {
+        trackingId,
+        senderName,
+        senderEmail,
+        senderPhone,
+        senderLocation,
+        receiverEmail,
+        receiverPhone,
+        receiverName,
+        receiverLocation,
+        deliveryMode,
+        contentName,
+        contentWeight,
+        contentHeight,
+        contentLength,
+        contentWidth,
+    };
     showLoader()
     console.log(payload)
 
     try {
-        const response = await fetch("http://localhost:1200/package/create", {
+        const response = await fetch("https://emmaserver.onrender.com/package/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -92,13 +99,15 @@ const payload = {
         }
         console.log("Response:", data);
         hideLoader()
-         Swal.fire({
+        Swal.fire({
             icon: "success",
             title: "Success",
             text: "Tracking code generated",
         });
-        window.location = "./pages/details.html"
-        
+        console.log(data['trackingId'])
+        localStorage.setItem('trackingId', data['trackingId']);
+        trackPackage();
+
 
     } catch (error) {
         console.error("Error:", error);
@@ -111,6 +120,115 @@ const payload = {
     }
 }
 
+
+async function trackPackage() {
+    console.log("i am clicked")
+    const trackID = localStorage.getItem('trackingId');
+
+    const baseUrl = "https://emmaserver.onrender.com/package/single/";
+
+    // Construct the full endpoint URL
+    const endpoint = `${baseUrl}${trackID}`;
+    // Perform the GET request
+
+    if (!trackID) {
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Enter a tracking ID",
+        });
+    }
+    showLoader()
+    try {
+        const response = await fetch(endpoint, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await response.json();
+        console.log(data)
+        if (response.status == 400) {
+            hideLoader()
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: data.message,
+            });
+        }
+        hideLoader()
+        localStorage.setItem('packageTracking', JSON.stringify(data));
+        window.location = "./pages/details.html"
+
+
+
+    } catch (error) {
+        console.error("Error:", error);
+        hideLoader()
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "An error occurred while sending the request. Please try again.",
+        });
+    }
+
+}
+
+
+async function trackPackage2() {
+    console.log("i am clicked")
+    const trackID = localStorage.getItem('trackingId');
+
+    const baseUrl = "https://emmaserver.onrender.com/package/single/";
+
+    // Construct the full endpoint URL
+    const endpoint = `${baseUrl}${trackID}`;
+    // Perform the GET request
+
+    if (!trackID) {
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Enter a tracking ID",
+        });
+    }
+    showLoader()
+    try {
+        const response = await fetch(endpoint, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await response.json();
+        console.log(data)
+        if (response.status == 400) {
+            hideLoader()
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: data.message,
+            });
+        }
+        hideLoader()
+        localStorage.setItem('packageTracking', JSON.stringify(data));
+        window.location = "details.html"
+
+
+
+    } catch (error) {
+        console.error("Error:", error);
+        hideLoader()
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "An error occurred while sending the request. Please try again.",
+        });
+    }
+
+}
+
+
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -120,3 +238,4 @@ function validatePhone(phone) {
     const phoneRegex = /^[0-9]{10,15}$/; // Modify as needed for phone format
     return phoneRegex.test(phone);
 }
+
