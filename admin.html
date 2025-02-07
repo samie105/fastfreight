@@ -5018,7 +5018,7 @@
 									</section>
 
 									<section class="p-6 max-w-6xl mx-auto">
-										<div class="text-2xl font-bold mb-6 text-gray-800">Package Admin</div>
+										<div class="text-2xl font-bold mb-6 text-gray-800 inline">Package Admin</div>
 
 										<div class="mb-8">
 											<table class="w-full border-collapse border border-gray-300">
@@ -5037,6 +5037,82 @@
 												</tbody>
 											</table>
 										</div>
+
+										<!-- Change Password Modal -->
+										<div id="changePasswordModal"
+											class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+											<div class="bg-white p-6 rounded shadow-lg w-96">
+												<h2 class="text-xl font-bold mb-4">Change Password</h2>
+												<form id="changePasswordForm">
+													<div class="mb-4">
+														<label for="username"
+															class="block text-sm font-medium text-gray-700">Username</label>
+														<input type="text" id="username" name="username" required
+															class="mt-1 block w-full border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+													</div>
+													<div class="mb-4">
+														<label for="newPassword"
+															class="block text-sm font-medium text-gray-700">New
+															Password</label>
+														<input type="password" id="newPassword" name="newPassword"
+															required
+															class="mt-1 block w-full border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+													</div>
+													<div class="flex justify-end">
+														<button type="button" onclick="closeChangePasswordModal()"
+															class="mr-2 px-4 py-2 bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Cancel</button>
+														<button type="submit"
+															class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Change
+															Password</button>
+													</div>
+												</form>
+											</div>
+										</div>
+
+										<script>
+											const changePasswordButton = document.querySelector('button[onclick=""]');
+											const changePasswordModal = document.getElementById('changePasswordModal');
+											const changePasswordForm = document.getElementById('changePasswordForm');
+
+											changePasswordButton.addEventListener('click', () => {
+												changePasswordModal.classList.remove('hidden');
+											});
+
+											function closeChangePasswordModal() {
+												changePasswordModal.classList.add('hidden');
+											}
+
+											changePasswordForm.addEventListener('submit', async (event) => {
+												event.preventDefault();
+												const formData = new FormData(changePasswordForm);
+												const data = Object.fromEntries(formData.entries());
+
+												try {
+													const response = await fetch('https://emmaserver.onrender.com/admin-change-password', {
+														method: 'POST',
+														headers: {
+															'Content-Type': 'application/json',
+														},
+														body: JSON.stringify(data),
+													});
+
+													if (response.ok) {
+														alert('Password changed successfully!');
+														closeChangePasswordModal();
+													} else {
+														const result = await response.json();
+														alert(result.message || 'Failed to change password');
+													}
+												} catch (error) {
+													console.error('Error:', error);
+													alert('Failed to change password. Please try again.');
+												}
+											});
+										</script>
+
+										<button onclick="" class=" mb-6 text-blue-800 bg-sky-500 p-4 rounded">change
+											password</button>
+
 
 										<form id="packageForm" class="space-y-6 hidden">
 											<!-- Tracking Information -->
@@ -7731,14 +7807,14 @@
 			<div class="sp-module ">
 				<div class="sp-module-content">
 					<ul class="menu nav-pills">
-						<li class="item-101 default current active menu-deeper"><a
-								href="index.html">Home<span class="menu-toggler"></span></a>
+						<li class="item-101 default current active menu-deeper"><a href="index.html">Home<span
+									class="menu-toggler"></span></a>
 						</li>
 						<li class="item-133"><a href="about.html">About</a></li>
 						<li class="item-134 menu-deeper "><a href="./services/services-page.html">Services<span
 									class="menu-toggler"></span></a>
 						</li>
-				
+
 						<li class="item-157"><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
@@ -9118,33 +9194,52 @@
 			if (!isAuthenticated) {
 				authModal.style.display = 'flex';
 			}
-
-			authForm.addEventListener('submit', (e) => {
-				e.preventDefault();
-
-				const username = document.getElementById('adminUsername').value;
-				const password = document.getElementById('adminPassword').value;
-
-				// In production, this should be replaced with a secure server-side validation
-				// Never store credentials in client-side code
-				if (validateCredentials(username, password)) {
-					authModal.style.display = 'none';
-					sessionStorage.setItem('adminAuthenticated', 'true');
-				} else {
-					alert('Authentication failed. Please try again.');
-					document.getElementById('adminPassword').value = '';
-				}
-			});
 		});
 
-		// Replace this with server-side validation in production
-		function validateCredentials(username, password) {
-			// TEMPORARY CREDENTIALS - REPLACE WITH SECURE SERVER-SIDE AUTH
-			const validUsername = 'admin'; // Change this
-			const validPassword = 'securePass123'; // Change this
+		const verifyButton = document.querySelector('.auth-submit-btn');
+		const originalButtonText = verifyButton.textContent;
 
-			return username === validUsername && password === validPassword;
-		}
+		authForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			const username = document.getElementById('adminUsername').value;
+			const password = document.getElementById('adminPassword').value;
+
+			// Show loader
+			verifyButton.textContent = 'Verifying...';
+			verifyButton.disabled = true;
+
+			// In production, this should be replaced with a secure server-side validation
+			// Never store credentials in client-side code
+			fetch('https://emmaserver.onrender.com/admin-login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ username, password }),
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.message === 'Login successful') {
+						authModal.style.display = 'none';
+						sessionStorage.setItem('adminAuthenticated', 'true');
+					} else {
+						alert(data.message);
+						document.getElementById('adminPassword').value = '';
+					}
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					alert('Authentication failed. Please try again.');
+					document.getElementById('adminPassword').value = '';
+				})
+				.finally(() => {
+					// Hide loader
+					verifyButton.textContent = originalButtonText;
+					verifyButton.disabled = false;
+				});
+		});
+
 	</script>
 
 	<div id="cursor">
