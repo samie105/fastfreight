@@ -5037,10 +5037,12 @@
 												</tbody>
 											</table>
 										</div>
+										<button id="changePassword" class=" mb-6 text-blue-800 bg-sky-500 p-4 rounded">change
+											password</button>
 
 										<!-- Change Password Modal -->
 										<div id="changePasswordModal"
-											class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+											class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-40">
 											<div class="bg-white p-6 rounded shadow-lg w-96">
 												<h2 class="text-xl font-bold mb-4">Change Password</h2>
 												<form id="changePasswordForm">
@@ -5060,9 +5062,9 @@
 													</div>
 													<div class="flex justify-end">
 														<button type="button" onclick="closeChangePasswordModal()"
-															class="mr-2 px-4 py-2 bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Cancel</button>
+															class="mr-2 px-4 py-2 bg-gray-500 text-red-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Cancel</button>
 														<button type="submit"
-															class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Change
+															class="px-4 py-2 bg-blue-600 text-gray hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Change
 															Password</button>
 													</div>
 												</form>
@@ -5070,11 +5072,12 @@
 										</div>
 
 										<script>
-											const changePasswordButton = document.querySelector('button[onclick=""]');
+											const changePasswordButton = document.querySelector('#changePassword');
 											const changePasswordModal = document.getElementById('changePasswordModal');
 											const changePasswordForm = document.getElementById('changePasswordForm');
 
 											changePasswordButton.addEventListener('click', () => {
+												console.log("omo")
 												changePasswordModal.classList.remove('hidden');
 											});
 
@@ -5110,8 +5113,7 @@
 											});
 										</script>
 
-										<button onclick="" class=" mb-6 text-blue-800 bg-sky-500 p-4 rounded">change
-											password</button>
+										
 
 
 										<form id="packageForm" class="space-y-6 hidden">
@@ -5207,6 +5209,30 @@
 															class="block text-sm font-medium text-gray-700">Receiver
 															Location</label>
 														<input type="text" id="receiverLocation" name="receiverLocation"
+															required
+															class="mt-1 block w-full border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+													</div>
+												</div>
+											</div>
+
+											<!-- Payment Information -->
+											<div class="bg-white p-4 shadow">
+												<h3 class="text-lg font-semibold mb-3 text-gray-700">Payment
+													Information</h3>
+												<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+													<div>
+														<label for="receiverEmail"
+															class="block text-sm font-medium text-gray-700">Payment
+															status</label>
+														<input type="text" id="paymentStatus" name="paymentStatus"
+															required
+															class="mt-1 block w-full border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+													</div>
+													<div>
+														<label for="receiverLocation"
+															class="block text-sm font-medium text-gray-700">Amount
+															Paid</label>
+														<input type="text" id="amountPaid" name="amountPaid"
 															required
 															class="mt-1 block w-full border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
 													</div>
