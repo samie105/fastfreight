@@ -1909,6 +1909,9 @@
 		});
 	</script>
 	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+	<!-- Include required libraries -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 	<meta property="article:author" content="Windstripe" />
 	<meta property="article:published_time" content="2024-08-13 23:08:27" />
 	<meta property="article:modified_time" content="2024-08-13 23:13:15" />
@@ -2469,46 +2472,7 @@
 																						class="sppb-addon-wrapper  addon-root-feature">
 																						<div id="sppb-addon-e72fcd1d-0827-4fa6-acce-f5191a0f3a68"
 																							class="clearfix  ">
-																							<!-- <div
-																								class="sppb-addon sppb-addon-feature sppb-text-left top-details">
-																								<div
-																									class="sppb-addon-content">
-																									<div
-																										class="sppb-media">
-																										<div
-																											class="pull-left">
-																											<div
-																												class="sppb-icon">
-																												<span
-																													class="sppb-icon-container"
-																													role="img"
-																													aria-label=" info@fastfreight.com"><i
-																														class="far fa-envelope"
-																														aria-hidden="true"></i></span>
-																											</div>
-																										</div>
-																										<div
-																											class="sppb-media-body">
-																											<div
-																												class="sppb-media-content">
-																												<div
-																													class="sppb-addon-title sppb-feature-box-title sppb-media-heading">
-																													<a
-																														href="../cdn-cgi/l/email-protection.html#6801060e07280d10090518040d460b0705">
-																														<span
-																															class="__cf_email__"
-																															data-cfemail="afc6c1c9c0efc3c0c8c6c2ced781ccc0c2">info@fastfreight.com</span></a>
-																												</div>
-																												<div
-																													class="sppb-addon-text">
-																													<p>
-																													</p>
-																												</div>
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div> -->
+
 																							<style type="text/css">
 																								#sppb-addon-e72fcd1d-0827-4fa6-acce-f5191a0f3a68 {
 																									box-shadow: 0 0 0 0 #FFFFFF;
@@ -5152,7 +5116,9 @@
 													</p>
 													<p>
 														<span class="font-medium text-gray-600">Status:</span>
-														<span class="text-white px-2 py-1 bg-blue-200 rounded-full font-semibold ml-2" id="delivery-status">Order placed</span>
+														<span
+															class="text-white px-2 py-1 bg-blue-200 rounded-full font-semibold ml-2"
+															id="delivery-status">Order placed</span>
 													</p>
 												</div>
 											</div>
@@ -5285,55 +5251,59 @@
 												</ul>
 											</div>
 										</div>
+										<style>
+											/* Previous styles remain the same */
+											.download-btn {
+												/* position: absolute;
+												top: 40px;
+												left: 40px; */
+												background: #007bff;
+												color: white;
+												padding: 10px 20px;
+												border-radius: 5px;
+												cursor: pointer;
+												text-decoration: none;
+												border: none;
+												font-size: 16px;
+												margin-top: 10px;
+											}
+
+											.download-btn:hover {
+												background: #0056b3;
+											}
+										</style>
+
+										<button class="download-btn" onclick="downloadPDF()">Download receipt</button>
+
+
+										<script>
+											// Add downloadPDF function
+											function downloadPDF() {
+												const receipt = document.querySelector('.receipt-container');
+
+												html2canvas(receipt, {
+													scale: 2, // Increase for better resolution
+													useCORS: true // Enable if using external images
+												}).then(canvas => {
+													const imgData = canvas.toDataURL('image/png', 1.0);
+													const pdf = new jspdf.jsPDF({
+														orientation: 'portrait',
+														unit: 'mm',
+														format: 'a4'
+													});
+
+													const imgWidth = 190; // Max width for A4
+													const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+													pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+													pdf.save(`Shipment-${document.querySelector('#tracking-id').textContent}.pdf`);
+												});
+											}
+
+											// Your existing data population code (if any) remains here
+										</script>
 									</section>
-									<!-- <section id="section-id-90d7ce8f-1edb-42f7-ab40-73f13fe42a75" class="sppb-section">
-										<div class="sppb-row-overlay"></div>
-										<div class="sppb-row-container">
-											<div class="sppb-row">
-												<div class="sppb-row-column  "
-													id="column-wrap-id-3a962434-71fb-46f5-9880-048a9c6e5bf4">
-													<div id="column-id-3a962434-71fb-46f5-9880-048a9c6e5bf4"
-														class="sppb-column ">
-														<div class="sppb-column-addons">
-															<div id="sppb-addon-wrapper-26d26109-20d6-4908-ab47-ceefa28c730f"
-																class="sppb-addon-wrapper ">
-																<div id="sppb-addon-26d26109-20d6-4908-ab47-ceefa28c730f"
-																	class="sppb-div-addon "
-																	data-sppb-wow-duration="300ms">
-																	<div id="sppb-addon-wrapper-58a9b3f5-2f23-485c-943c-d69c36b7e1d0"
-																		class="sppb-addon-wrapper  addon-root-heading">
-																		<div id="sppb-addon-58a9b3f5-2f23-485c-943c-d69c36b7e1d0"
-																			class="clearfix  sppb-wow fadeInUp  "
-																			data-sppb-wow-duration="1000ms"
-																			data-sppb-wow-delay="100ms">
-																			<div class="sppb-addon sppb-addon-header">
-																				<h2 class="sppb-addon-title">Make your
-																					website unforgettable<br />
-																					join the logimax community</h2>
-																			</div>
-																		</div>
-																	</div>
-																	<div id="sppb-addon-wrapper-b116a629-6b3a-4d82-8086-e0667af24000"
-																		class="sppb-addon-wrapper  addon-root-button">
-																		<div id="sppb-addon-b116a629-6b3a-4d82-8086-e0667af24000"
-																			class="clearfix  sppb-wow fadeInUp  "
-																			data-sppb-wow-duration="1000ms"
-																			data-sppb-wow-delay="300ms">
-																			<div class="sppb-button-wrapper"><a
-																					href="../contact.html"
-																					id="btn-b116a629-6b3a-4d82-8086-e0667af24000"
-																					class="sppb-btn  sppb-btn-primary sppb-btn-rounded">JOIN
-																					TO DOWNLOAD</a></div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</section> -->
+
 								</div>
 							</div>
 
@@ -5342,6 +5312,8 @@
 				</div>
 
 			</section>
+
+
 
 			<footer id="sp-footer">
 
@@ -7241,8 +7213,9 @@
 																					<div
 																						class="sppb-addon sppb-addon-text-block ">
 																						<div class="sppb-addon-content">
-																							<p>Copyright © 2024 Fastfreight
-																								</p>
+																							<p>Copyright © 2024
+																								Fastfreight
+																							</p>
 																						</div>
 																					</div>
 																					<style type="text/css">
@@ -7700,14 +7673,14 @@
 			<div class="sp-module ">
 				<div class="sp-module-content">
 					<ul class="menu nav-pills">
-						<li class="item-101 default current active menu-deeper"><a
-								href="index.html">Home<span class="menu-toggler"></span></a>
+						<li class="item-101 default current active menu-deeper"><a href="index.html">Home<span
+									class="menu-toggler"></span></a>
 						</li>
 						<li class="item-133"><a href="about.html">About</a></li>
 						<li class="item-134 menu-deeper "><a href="./services/services-page.html">Services<span
 									class="menu-toggler"></span></a>
 						</li>
-				
+
 						<li class="item-157"><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
@@ -8972,6 +8945,191 @@
 			</div>
 		</div>
 	</div>
+
+	<style>
+		.body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			background-color: #f8f9fa;
+			margin: 0;
+			padding: 20px;
+
+		}
+
+		.receipt-container {
+			position: relative;
+			background: white;
+			padding: 40px;
+			max-width: 600px;
+			width: 100%;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+			border-radius: 12px;
+		}
+
+		.logo-container {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		.logo {
+			max-width: 200px;
+			height: auto;
+		}
+
+		.status-stamp {
+			position: absolute;
+			top: 40px;
+			right: 40px;
+			padding: 8px 20px;
+			font-weight: bold;
+			transform: rotate(5deg);
+			border-radius: 4px;
+			background: #ffd700;
+			color: #000;
+		}
+
+		.details-section {
+			margin-bottom: 25px;
+		}
+
+		.two-column {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 30px;
+			margin: 20px 0;
+		}
+
+		.detail-item {
+			margin: 12px 0;
+		}
+
+		.detail-label {
+			color: #6c757d;
+			font-weight: 500;
+			margin-bottom: 4px;
+		}
+
+		.detail-value {
+			font-weight: 600;
+			color: #2c3e50;
+		}
+
+		.content-details {
+			background: #f8f9fa;
+			padding: 20px;
+			border-radius: 8px;
+			margin: 25px 0;
+		}
+
+		.status-badge {
+			display: inline-block;
+			padding: 6px 12px;
+			border-radius: 20px;
+			font-size: 0.9em;
+			font-weight: 500;
+		}
+
+		.delivery-status {
+			background: #ffe082;
+			color: #6d4c41;
+		}
+
+		.payment-status {
+			background: #ededed;
+			color: #2d2d2d;
+		}
+	</style>
+
+	<div class="body">
+		<div class="receipt-container">
+			<div id="tracking-id-r" class="status-stamp"></div>
+			<div class="logo-container">
+				<img src="../images/logo/white-logo (1).png" class="logo" alt="Company Logo">
+			</div>
+
+			<div class="two-column">
+				<div class="sender-info">
+					<h3>Sender Details</h3>
+					<div class="detail-item">
+						<div class="detail-label">Name</div>
+						<div id="s-name" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Phone</div>
+						<div id="s-phone" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Email</div>
+						<div id="s-email" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Departure</div>
+						<div id="s-location" class="detail-value"></div>
+					</div>
+				</div>
+
+				<div class="receiver-info">
+					<h3>Receiver Details</h3>
+					<div class="detail-item">
+						<div class="detail-label">Name</div>
+						<div id="r-name" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Phone</div>
+						<div id="r-phone" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Email</div>
+						<div id="r-email" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Destination</div>
+						<div id="r-location" class="detail-value"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content-details">
+				<h3>Shipment Details</h3>
+				<div class="two-column">
+					<div class="detail-item">
+						<div class="detail-label">Content Name</div>
+						<div id="content-r" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Weight</div>
+						<div id="weight-r" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Dimensions</div>
+						<div id="dimension-r" class="detail-value"></div>
+					</div>
+					<div class="detail-item">
+						<div class="detail-label">Delivery Mode</div>
+						<div id="freight-method-r" class="detail-value"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="status-section">
+				<div class="detail-item">
+					<div class="detail-label">Delivery Status</div>
+					<div id="package-status-r" class="status-badge delivery-status"></div>
+				</div>
+				<div class="detail-item">
+					<div class="detail-label">Payment Status</div>
+					<div id="payment-status-r" class="status-badge payment-status"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
 	<div id="cursor">
 		<div id="circle-big"></div>
 		<div id="circle"></div>
@@ -9072,6 +9230,28 @@
 				document.getElementById('delivery-status').innerText = packageInfo.deliveryStatus;
 				// document.getElementById('delivery-mode').innerText = packageInfo.deliveryMode;
 				document.getElementById('delivery-date').innerText = deliveryDate;
+
+
+
+				document.getElementById('tracking-id-r').innerText = packageInfo.trackingId;
+				document.getElementById('s-name').innerText = packageInfo.senderName;
+				document.getElementById('s-phone').innerText = packageInfo.senderPhone;
+				document.getElementById('s-email').innerText = packageInfo.senderEmail;
+				document.getElementById('s-location').innerText = packageInfo.senderLocation;
+
+				document.getElementById('r-name').innerText = packageInfo.receiverName;
+				document.getElementById('r-phone').innerText = packageInfo.receiverPhone;
+				document.getElementById('r-email').innerText = packageInfo.receiverEmail;
+				document.getElementById('r-location').innerText = packageInfo.receiverLocation;
+
+				document.getElementById('content-r').innerText = packageInfo.receiverLocation;
+				document.getElementById('weight-r').innerText = packageInfo.contentWeight;
+				document.getElementById('dimension-r').innerText = packageInfo.contentHeight + "x" + packageInfo.contentWidth + "x" + packageInfo.contentLength;
+				document.getElementById('freight-method-r').innerText = packageInfo.deliveryMode;
+
+				document.getElementById('package-status-r').innerText = packageInfo.deliveryStatus;
+				document.getElementById('payment-status-r').innerText = packageInfo.paymentStatus;
+
 				// document.getElementById('current-location').innerText = packageInfo.currentLocation;
 
 				// const container = document.querySelector(".checkpoints-container");
