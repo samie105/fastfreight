@@ -134,6 +134,7 @@ async function registerPackage() {
   }
 }
 async function registerPackage2() {
+  console.log("clicked");
   const senderName = document.getElementById("sender-name").value.trim();
   const senderEmail = document.getElementById("sender-email").value.trim();
   const senderPhone = document.getElementById("sender-phone").value.trim();
@@ -241,6 +242,7 @@ async function registerPackage2() {
     }
     console.log("Response:", data);
     hideLoader();
+    alert("created successfully and code generated")
     Swal.fire({
       icon: "success",
       title: "Success",
@@ -249,10 +251,12 @@ async function registerPackage2() {
   } catch (error) {
     console.error("Error:", error);
     hideLoader();
+    alert("couldn't create or generate tracking id due to some issues")
     return Swal.fire({
       icon: "error",
       title: "Oops...",
       text: "An error occurred while sending the request. Please try again.",
+
     });
   }
 }
