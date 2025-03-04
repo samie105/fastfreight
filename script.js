@@ -92,7 +92,7 @@ async function registerPackage() {
 
   try {
     const response = await fetch(
-      "https://emmaserver.onrender.com/package/create",
+      "https://consbackendcentral.onrender.com/package/create",
       {
         method: "POST",
         headers: {
@@ -219,7 +219,7 @@ async function registerPackage2() {
 
   try {
     const response = await fetch(
-      "https://emmaserver.onrender.com/package/create",
+      "https://consbackendcentral.onrender.com/package/create",
       {
         method: "POST",
         headers: {
@@ -242,7 +242,7 @@ async function registerPackage2() {
     }
     console.log("Response:", data);
     hideLoader();
-    alert("created successfully and code generated")
+    alert("created successfully and code generated");
     Swal.fire({
       icon: "success",
       title: "Success",
@@ -251,12 +251,11 @@ async function registerPackage2() {
   } catch (error) {
     console.error("Error:", error);
     hideLoader();
-    alert("couldn't create or generate tracking id due to some issues")
+    alert("couldn't create or generate tracking id due to some issues");
     return Swal.fire({
       icon: "error",
       title: "Oops...",
       text: "An error occurred while sending the request. Please try again.",
-
     });
   }
 }
@@ -265,7 +264,7 @@ async function trackPackage() {
   console.log("i am clicked");
   const trackID = localStorage.getItem("trackingId");
 
-  const baseUrl = "https://emmaserver.onrender.com/package/single/";
+  const baseUrl = "https://consbackendcentral.onrender.com/package/single/";
 
   // Construct the full endpoint URL
   const endpoint = `${baseUrl}${trackID}`;
@@ -314,7 +313,7 @@ async function trackPackage2() {
   console.log("i am clicked");
   const trackID = localStorage.getItem("trackingId");
 
-  const baseUrl = "https://emmaserver.onrender.com/package/single/";
+  const baseUrl = "https://consbackendcentral.onrender.com/package/single/";
 
   // Construct the full endpoint URL
   const endpoint = `${baseUrl}${trackID}`;
